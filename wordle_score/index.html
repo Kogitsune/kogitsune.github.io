@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style type="text/css">
+			body {
+				background-color: black;
+				display: flex;
+				flex-flow: row wrap;
+			}
+
+			p {
+				color: white;
+				margin: auto;
+				text-align: center;
+				font-family: Arial, Helvetica, sans-serif;
+				font-weight: bolder;
+				padding: 2em;
+			}
+
+			div.container {
+				width: 50em;
+				border: 1px solid gray;
+				margin: auto;
+			}
+
+			div.row_container {
+				display: flex;
+				flex-flow: row wrap;
+				margin: auto;
+				justify-content: center;
+				align-items: center;
+			}
+
+			div.guess {
+				border: 1px solid white;
+				width: 4em;
+				height: 4em;
+				margin: 4px;
+				padding: 4px;
+				color: dimgray;
+			}
+
+			div.clicker {
+				border: 1px solid white;
+				width: 8em;
+				margin: 4px;
+				padding: 4px;
+				text-align: center;
+				color: gainsboro;
+			}
+
+			textarea {
+				background-color: black;
+				text-align: center;
+				color: gainsboro;
+				width: 100em;
+				height: 32em;
+			}
+
+			.guess1 {
+				background-color: darkgoldenrod;
+			}
+
+			.guess2 {
+				background-color: darkgreen;
+			}
+		</style>
+
+		<script type="text/javascript">
+			const output = {
+				miss: ":black_large_square:",
+				wrong: ":yellow_square:",
+				correct: ":green_square:"
+			};
+
+			function UpdateGuess( sender ){
+				if ( sender.classList.contains( "guess2" ) ){
+					sender.classList.remove( "guess2" );
+				}
+				else if( sender.classList.contains( "guess1" )){
+					sender.classList.replace( "guess1", "guess2" );
+				}
+				else
+				{
+					sender.classList.add( "guess1" );
+				}
+
+				UpdateOutput( );
+			}
+
+			function UpdateOutput( ){
+				var choices = document.getElementsByClassName( "guess" );
+
+				var out_txt = "";
+				var n = 0;
+				
+				Array.prototype.forEach.call( choices, element => {
+					n++;
+
+					if (element.classList.contains( "guess2" )){
+						out_txt += output.correct;
+					}
+					else if (element.classList.contains( "guess1" ))
+					{
+						out_txt += output.wrong;
+					}
+					else
+					{
+						out_txt += output.miss;
+					}
+
+					if ( n == 5 ){
+						n = 0;
+						out_txt += "\n"
+					}
+				});
+
+				document.getElementById( "output" ).value = out_txt;
+			}
+		</script>
+	</head>
+	<body onload="UpdateOutput( )">
+		<div class="container">
+			<p>Click / tap the squares to cycle through your score (⚫->🟡->🟢->⚫)</p>
+			<div id="row1" class="row_container">
+				<div id="guess_01" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_02" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_03" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_04" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_05" class="guess" onclick="UpdateGuess(this)"></div>
+			</div>
+			<div id="row2" class="row_container">
+				<div id="guess_06" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_07" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_08" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_09" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_10" class="guess" onclick="UpdateGuess(this)"></div>
+			</div>
+			<div id="row3" class="row_container">
+				<div id="guess_11" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_12" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_13" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_14" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_15" class="guess" onclick="UpdateGuess(this)"></div>
+			</div>
+			<div id="row4" class="row_container">
+				<div id="guess_16" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_17" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_18" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_19" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_20" class="guess" onclick="UpdateGuess(this)"></div>
+			</div>
+			<div id="row5" class="row_container">
+				<div id="guess_21" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_22" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_23" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_24" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_25" class="guess" onclick="UpdateGuess(this)"></div>
+			</div>
+			<div id="row6" class="row_container">
+				<div id="guess_26" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_27" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_28" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_29" class="guess" onclick="UpdateGuess(this)"></div>
+				<div id="guess_30" class="guess" onclick="UpdateGuess(this)"></div>
+			</div>
+		</div>
+		<div class="container">
+			<p>Output</p>
+			<div class="row_container">
+				<textarea id="output"></textarea>
+			</div>
+		</div>
+	</body>
+</html>
