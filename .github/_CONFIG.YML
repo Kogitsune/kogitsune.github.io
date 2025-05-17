@@ -1,2 +1,4 @@
-theme:midnight
+remote_theme: pages-themes/merlot@v0.2.0
 title:Emily's Toybox
+plugins:
+- jekyll-remote-theme
